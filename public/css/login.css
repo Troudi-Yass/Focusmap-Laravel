@@ -1,0 +1,189 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(ellipse at bottom, #0a0e1a 0%, #050710 100%);
+    overflow: hidden;
+    height: 100vh;
+    font-family: 'Nunito', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+/* Login form container */
+.login-container {
+    position: relative;
+    z-index: 10;
+    background: rgba(10, 14, 26, 0.8);
+    padding: 2.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.3);
+    width: 100%;
+    max-width: 28rem;
+    -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+}
+
+.login-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: hsl(180, 100%, 85%);
+}
+
+/* Form elements */
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: hsl(180, 100%, 85%);
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 0.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(5, 7, 16, 0.7);
+    color: white;
+    font-size: 0.875rem;
+    transition: border-color 0.2s;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: hsl(180, 100%, 60%);
+    box-shadow: 0 0 0 3px rgba(0, 191, 255, 0.1);
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.25rem;
+}
+
+.remember-me input {
+    margin-right: 0.5rem;
+}
+
+.remember-me label {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+
+.forgot-password {
+    font-size: 0.875rem;
+    color: hsl(180, 100%, 85%);
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.submit-button {
+    background-color: hsl(180, 100%, 40%);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.25rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.submit-button:hover {
+    background-color: hsl(180, 100%, 30%);
+}
+
+/* Stars animation */
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    transform: rotate(-45deg);
+}
+
+.star {
+    --star-color: hsl(180, 100%, 85%);
+    --star-tail-length: 8em;
+    --star-tail-height: 1.5px;
+    --star-width: calc(var(--star-tail-length) / 4);
+    --fall-duration: 6s;
+    --tail-fade-duration: var(--fall-duration);
+    
+    position: absolute;
+    top: var(--top-offset);
+    left: 0;
+    width: var(--star-tail-length);
+    height: var(--star-tail-height);
+    color: var(--star-color);
+    background: linear-gradient(90deg, var(--star-color), transparent);
+    border-radius: 50%;
+    filter: drop-shadow(0 0 8px var(--star-color)) 
+           drop-shadow(0 0 15px var(--star-color));
+    transform: translate3d(100vw, 0, 0);
+    animation: fall var(--fall-duration) var(--fall-delay) linear infinite, 
+               tail-fade var(--tail-fade-duration) var(--fall-delay) ease-out infinite;
+    opacity: 0.9;
+    will-change: transform, opacity;
+}
+
+.stars-left, .stars-right {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 30%;
+}
+
+.stars-left {
+    left: 0;
+}
+
+.stars-right {
+    right: 0;
+}
+
+@keyframes fall {
+    to {
+        transform: translate3d(-100vw, 0, 0);
+    }
+}
+
+@keyframes tail-fade {
+    0%, 50% {
+        width: var(--star-tail-length);
+        opacity: 0.9;
+    }
+    70%, 80% {
+        width: 0;
+        opacity: 0.5;
+    }
+    100% {
+        width: 0;
+        opacity: 0;
+    }
+}
+
+/* Fallback if the operating system prefers reduced motion */
+@media (prefers-reduced-motion) {
+    .star {
+        animation: none;
+    }
+}
