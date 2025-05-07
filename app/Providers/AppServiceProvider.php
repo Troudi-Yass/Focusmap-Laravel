@@ -25,4 +25,8 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
+    protected $policies = [
+        Goal::class => GoalPolicy::class,
+        Task::class => TaskPolicy::class,
+    ];
 }

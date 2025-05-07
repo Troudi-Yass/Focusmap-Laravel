@@ -1,4 +1,131 @@
-<x-guest-layout>
+{{-- resources/views/dashboard.blade.php --}}
+
+{{-- Check if this line is causing the error --}}
+<x-app-layout>
+    {{-- ... --}}
+</x-app-layout>
+
+{{-- If the above line is not causing the error, try adding this line --}}
+@php
+    // Add some debug code here to see if it's executed
+    echo 'Hello World!';
+@endphp
+
+{{-- If the above line is not causing the error, try wrapping your code in a section --}}
+@section('content')
+    {{-- ... --}}
+@endsection{{-- resources/views/dashboard.blade.php --}}
+
+<x-app-layout>
+    <x-slot name="header">
+        <!-- Removed the old header for a cleaner look -->
+    </x-slot>
+
+    <style>
+        /* Cosmic background styles */
+
+        .cosmic-bg {
+            margin: 0;
+
+            padding: 0;
+
+            background: radial-gradient(ellipse at bottom, #0a0e1a 0%, #050710 100%);
+
+            min-height: 100vh;
+
+            overflow: hidden;
+
+            color: white;
+
+            font-family: 'Nunito', sans-serif;
+
+        }
+
+        /* Remove white bar at the top */
+
+        body, html {
+            margin: 0;
+
+            padding: 0;
+
+            background: none;
+
+        }
+
+        .min-h-screen.bg-gray-100 {
+            background: none !important;
+
+            min-height: 0 !important;
+
+        }
+
+        header, .min-h-screen > header, .min-h-screen > nav {
+            display: none !important;
+
+        }
+    </style>
+{{-- resources/views/dashboard.blade.php --}}
+
+<x-app-layout>
+    <!-- ... -->
+</x-app-layout>
+
+{{-- Add this line at the very end of the file --}}
+@endsection<x-app-layout>
+
+    <x-slot name="header">
+        <!-- Removed the old header for a cleaner look -->
+    </x-slot>
+
+    <style>
+        /* Cosmic background styles */
+
+        .cosmic-bg {
+            margin: 0;
+
+            padding: 0;
+
+            background: radial-gradient(ellipse at bottom, #0a0e1a 0%, #050710 100%);
+
+            min-height: 100vh;
+
+            overflow: hidden;
+
+            color: white;
+
+            font-family: 'Nunito', sans-serif;
+
+        }
+
+        /* Remove white bar at the top */
+
+        body, html {
+            margin: 0;
+
+            padding: 0;
+
+            background: none;
+
+        }
+
+        .min-h-screen.bg-gray-100 {
+            background: none !important;
+
+            min-height: 0 !important;
+
+        }
+
+        header, .min-h-screen > header, .min-h-screen > nav {
+            display: none !important;
+
+        }
+    </style> <!-- Add this closing tag -->
+</x-app-layout>
+    {{-- Add this section to wrap your content --}}
+    @section('content')
+        {{-- Your content goes here --}}
+    @endsection
+</x-app-layout><x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">

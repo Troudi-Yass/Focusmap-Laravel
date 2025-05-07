@@ -3,12 +3,13 @@ import laravel from 'laravel-vite-plugin';
 
 export default defineConfig({
     plugins: [
-        laravel([
-            'resources/css/app.css',
-            'resources/css/login.css',
-            'resources/js/app.js',
-            'resources/js/login.js',
-
-        ]),
+        laravel({
+            input: [
+                'resources/css/cosmic.css',
+                'resources/css/app.css',
+                'resources/js/app.js',
+            ],
+            refresh: true,
+        }),
     ],
 });

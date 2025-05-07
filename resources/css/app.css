@@ -1,3 +1,308 @@
+/* Tailwind Directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Base Styles */
+:root {
+  --primary: #06b6d4;
+  --primary-dark: #0891b2;
+  --secondary: #1e293b;
+  --accent: #7dd3fc;
+}
+
+/* Cosmic Theme */
+.cosmic-bg {
+  background: radial-gradient(ellipse at bottom, #0a0e1a 0%, #050710 100%);
+  min-height: 100vh;
+  color: #e0f7fa;
+}
+
+/* Typography */
+.text-cosmic {
+  color: hsl(180, 100%, 85%);
+}
+
+/* Cards */
+.cosmic-card {
+  background: rgba(10, 14, 26, 0.7);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(0, 191, 255, 0.2);
+  box-shadow: 0 0 20px rgba(0, 191, 255, 0.1);
+  border-radius: 10px;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+/* Progress Bars */
+.progress-container {
+  position: relative;
+  width: 100%;
+  background-color: rgba(45, 55, 72, 0.5);
+  border-radius: 10px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.5s ease, background-color 0.3s ease;
+  position: relative;
+  background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+}
+
+.progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-100%);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Status Badges */
+.status-badge {
+  padding: 0.25rem 0.625rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.status-just_started {
+  background-color: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+}
+
+.status-on_track {
+  background-color: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+}
+
+.status-in_progress {
+  background-color: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+}
+
+.status-almost_done {
+  background-color: rgba(139, 92, 246, 0.2);
+  color: #a78bfa;
+}
+
+.status-completed {
+  background-color: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+}
+
+/* Buttons */
+.btn {
+  padding: 0.625rem 1.25rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: #0f172a;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(0, 191, 255, 0.1);
+}
+
+/* Form Elements */
+.form-input {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  background-color: rgba(5, 7, 16, 0.7);
+  border: 1px solid rgba(0, 191, 255, 0.2);
+  border-radius: 6px;
+  color: white;
+  margin-bottom: 0.9375rem;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(0, 191, 255, 0.2);
+}
+
+/* Custom Checkbox */
+.custom-checkbox {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #2d3748;
+  border-radius: 4px;
+  background-color: transparent;
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.custom-checkbox:checked {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.custom-checkbox:checked::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  width: 6px;
+  height: 10px;
+  border: solid #0d1b2a;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Dashboard Layout */
+.dashboard-container {
+  display: flex;
+  position: relative;
+  z-index: 10;
+}
+
+.sidebar {
+  width: 240px;
+  background: rgba(10, 14, 26, 0.8);
+  backdrop-filter: blur(5px);
+  border-right: 1px solid rgba(0, 191, 255, 0.2);
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  padding: 1.25rem 0;
+}
+
+.main-content {
+  flex: 1;
+  padding: 1.25rem;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.25rem;
+  border-radius: 6px;
+  color: hsl(180, 100%, 85%);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.nav-item.active {
+  background: rgba(0, 191, 255, 0.1);
+  color: #00ffff;
+  border-left: 3px solid #00ffff;
+}
+
+.nav-item:hover:not(.active) {
+  background: rgba(0, 191, 255, 0.05);
+}
+
+.nav-icon {
+  margin-right: 0.75rem;
+  font-size: 1.125rem;
+}
+
+/* Stars Animation */
+.star {
+  --star-color: hsl(180, 100%, 85%);
+  --star-tail-length: 6em;
+  --star-tail-height: 1.5px;
+  --star-width: calc(var(--star-tail-length) / 4);
+  --fall-duration: 6s;
+  --tail-fade-duration: var(--fall-duration);
+  
+  position: absolute;
+  top: var(--top-offset);
+  left: 0;
+  width: var(--star-tail-length);
+  height: var(--star-tail-height);
+  color: var(--star-color);
+  background: linear-gradient(90deg, var(--star-color), transparent);
+  border-radius: 50%;
+  filter: drop-shadow(0 0 6px var(--star-color));
+  transform: translateX(100vw);
+  animation: fall var(--fall-duration) var(--fall-delay) linear infinite, 
+             tail-fade var(--tail-fade-duration) var(--fall-delay) ease-out infinite;
+  opacity: 0.9;
+}
+
+@keyframes fall {
+  to {
+    transform: translateX(-100vw);
+  }
+}
+
+@keyframes tail-fade {
+  0%, 50% {
+    width: var(--star-tail-length);
+    opacity: 0.9;
+  }
+  70%, 80% {
+    width: 0;
+    opacity: 0.5;
+  }
+  100% {
+    width: 0;
+    opacity: 0;
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  
+  .nav-item {
+    flex-direction: column;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+  }
+  
+  .nav-icon {
+    margin-right: 0;
+    margin-bottom: 0.3125rem;
+  }
+}

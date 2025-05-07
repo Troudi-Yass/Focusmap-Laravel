@@ -3,13 +3,15 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
-use App\Http\Controllers\Auth\PasswordResetLinkController; // ADD THIS at the top
+use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Http\Controllers\GoalController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\DashboardController;
 
-
-Route::get('/', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
+// Dashboard route
+Route::get('/', [DashboardController::class, 'index'])
+    ->middleware(['auth'])
+    ->name('dashboard');
 
 // Registration Routes
 Route::get('/register', [RegisteredUserController::class, 'create'])
@@ -42,4 +44,27 @@ Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
 
 Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
     ->middleware('guest')
-    ->name('password.email');   
+    ->name('password.email');  
+
+// Email Verification Routes
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', [\App\Http\Controllers\Auth\VerifyEmailController::class, '__invoke'])
+    ->middleware(['auth', 'signed', 'throttle:6,1'])
+    ->name('verification.verify');
+
+Route::post('/email/resend', [\App\Http\Controllers\Auth\EmailVerificationNotificationController::class, 'store'])
+    ->middleware(['auth', 'throttle:6,1'])
+    ->name('verification.send');
+
+// Goals routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('goals', GoalController::class);
+    Route::resource('goals.tasks', TaskController::class)
+        ->shallow()
+        ->except(['index', 'create', 'show']);
+    Route::delete('/account', [App\Http\Controllers\UserController::class, 'destroy'])->name('account.delete');
+});

@@ -1,0 +1,15 @@
+/* Cosmic Dashboard Styles */
+/* Paste the entire <style> block from your scraped file here */
+
+/* Cosmic background styles */
+.cosmic-bg {
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(ellipse at bottom, #0a0e1a 0%, #050710 100%);
+    min-height: 100vh;
+    overflow: hidden;
+    color: white;
+    font-family: 'Nunito', sans-serif;
+}
+
+/* ...rest of the provided CSS... */
