@@ -58,6 +58,8 @@ Route::get('/email/verify/{id}/{hash}', [\App\Http\Controllers\Auth\VerifyEmailC
 Route::post('/email/resend', [\App\Http\Controllers\Auth\EmailVerificationNotificationController::class, 'store'])
     ->middleware(['auth', 'throttle:6,1'])
     ->name('verification.send');
+    Route::get('/goals/{goal}/mindmap', [GoalController::class, 'mindmap'])
+     ->name('goals.mindmap');
 
 // Goals routes
 Route::middleware(['auth'])->group(function () {

@@ -215,4 +215,9 @@ class GoalController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+    public function mindmap(Goal $goal)
+{
+    $steps = $goal->steps()->orderBy('order')->get();
+    return view('goals.mindmap', compact('goal', 'steps'));
+}
 }
